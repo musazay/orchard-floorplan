@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orchard House - Floor Plan Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="title">
+      <h1>Orchard House</h1>
+      <p class="subtitle">Floor plan demo - click a room to see it</p>
+    </div>
+    <nav class="floor-toggle" id="floorToggle" aria-label="Choose floor"></nav>
+  </header>
+
+  <main class="layout">
+    <section class="plan-pane">
+      <div class="plan-wrap" id="planWrap">
+        <!-- SVG plan injected here -->
+      </div>
+    </section>
+
+    <aside class="sidebar">
+      <div class="card orientation" id="orientation"></div>
+
+      <div class="card">
+        <h2>Rooms</h2>
+        <ul class="room-list" id="roomList"></ul>
+      </div>
+
+      <div class="card">
+        <h2>Exterior</h2>
+        <button class="gallery-btn" id="exteriorBtn">View exterior renders</button>
+      </div>
+
+      <div class="card">
+        <h2>Legend</h2>
+        <ul class="legend">
+          <li><span class="swatch room"></span> Clickable room</li>
+          <li><span class="swatch context"></span> Context (not clickable)</li>
+          <li><span class="swatch ghost"></span> Off-plan (e.g. garage)</li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Image modal -->
+  <div class="modal-backdrop" id="modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+      <div class="modal-main">
+        <div class="modal-left">
+          <div class="modal-body" id="modalBody"></div>
+          <div class="modal-caption">
+            <h3 id="modalTitle"></h3>
+            <p id="modalDesc"></p>
+          </div>
+        </div>
+        <aside class="modal-notes">
+          <h4>Notes</h4>
+          <ul class="notes-list" id="notesList"></ul>
+          <div class="notes-input">
+            <textarea id="notesArea" placeholder="Add a note...  (Cmd/Ctrl+Enter to save)"></textarea>
+            <div class="notes-actions">
+              <span class="notes-status" id="notesStatus"></span>
+              <button class="notes-save" id="notesSave">Save note</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase (compat) for shared notes; falls back to on-device if not configured -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

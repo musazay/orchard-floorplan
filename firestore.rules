@@ -1,0 +1,12 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Family demo: anyone who has the site link can read and write room notes.
+    // There is no login. This is intentional for an easy shareable demo.
+    // If you want it locked down later, replace `if true` with an auth check.
+    match /rooms/{room}/notes/{note} {
+      allow read, write: if true;
+    }
+  }
+}
