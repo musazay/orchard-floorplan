@@ -36,11 +36,11 @@ page-bottom = north/road, page-right = west (garage), page-left = east.
 
 | Room                  | Approx W x D (ft) | Clickable | Image file | Notes                                      |
 | --------------------- | ----------------- | --------- | ---------- | ------------------------------------------ |
-| Kitchen & Dining      | 20 x 24           | Y         |            | open to great room                         |
+| Kitchen & Dining      | 20 x 24           | Y         | kitchen-dining.png | open to great room                  |
 | Great Room            | 20 x 24           | Y         | great-room-fireplace.png, great-room-kitchen.png | 2 images (slider) |
 | Foyer (images)        | see below         | Y         | foyer-front.png, foryer-back.png           | 2 images (slider); note "foryer" typo in filename |
-| Pantry                | 16 x 6.5          | N         |            | windowless, off kitchen                    |
-| Family Room           | 20 x 13.5         | Y         |            | lower-left                                 |
+| Pantry                | 16 x 6.5          | Y         | pantry-butler.png | butler's pantry; now clickable       |
+| Family Room           | 20 x 13.5         | Y         | family-room.png   | lower-left                           |
 | Great Room            | 20 x 24           | Y         |            | central gathering space                    |
 | Foyer                 | ~20 x 20          | Y         |            | front entry (north / road side); large open space, powder + center stair tucked inside |
 | Powder Room           | 6 x 5             | N         |            | small box inside foyer                     |

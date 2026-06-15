@@ -128,11 +128,11 @@ body {
 .swatch.ghost { background: var(--ghost); border-style: dashed; }
 
 /* SVG room styling */
+/* fill follows clickability: clickable = room color, everything else = context */
 .svg-room { fill: var(--context); stroke: var(--line); stroke-width: 0.25; }
-.svg-room.kind-room { fill: var(--room); }
+.svg-room.clickable { fill: var(--room); cursor: pointer; transition: fill 0.12s ease; }
 .svg-room.kind-ghost { fill: var(--ghost); stroke-dasharray: 1.2 1; }
 .svg-room.kind-stairs { fill: #e4ddcc; }
-.svg-room.clickable { cursor: pointer; transition: fill 0.12s ease; }
 .svg-room.clickable:hover, .svg-room.clickable.hot { fill: var(--room-hover); }
 .svg-label { fill: var(--ink); font-size: 1.5px; text-anchor: middle; pointer-events: none; }
 .svg-label .dim { fill: var(--muted); }

@@ -13,7 +13,9 @@
  *            sketch exactly: north points DOWN, so page-bottom = north/road,
  *            page-right = west/garage side, page-left = east.)
  *   w, d   - width (left-right) and depth (top-down) in feet
- *   click  - true = clickable, opens an image. false = context only.
+ *   click  - any room with images is clickable automatically. Set click:true only to
+ *            make a room clickable BEFORE it has images (shows a placeholder); leave it
+ *            off/false for context-only spaces (halls, baths, stairs, etc.).
  *   images - array of image filenames in images/ (e.g. ["kitchen-1.png",
  *            "kitchen-2.png"]). One image shows on its own; multiple images get
  *            a slider in the popup. Empty/omitted = a "coming soon" placeholder.
@@ -55,10 +57,10 @@ const FLOORS = {
       "(garage side), page-left = east, top = south/orchard.",
     rooms: [
       // --- WEST column on the page is drawn on the LEFT (page-left = east) ---
-      { id: "kitchen", name: "Kitchen & Dining", dims: "20x24", x: 0, y: 0, w: 20, d: 24, click: true, img: null, desc: "Open to the great room." },
-      { id: "pantry", name: "Pantry", dims: "16x6.5", x: 0, y: 24, w: 16, d: 6.5, click: false, img: null, kind: "context" },
+      { id: "kitchen", name: "Kitchen & Dining", dims: "20x24", x: 0, y: 0, w: 20, d: 24, click: true, images: ["kitchen-dining.png"], desc: "Open to the great room." },
+      { id: "pantry", name: "Pantry", dims: "16x6.5", x: 0, y: 24, w: 16, d: 6.5, click: true, images: ["pantry-butler.png"], kind: "context", desc: "Butler's pantry." },
       { id: "hall1", name: "", x: 16, y: 24, w: 4, d: 6.5, click: false, img: null, kind: "context" },
-      { id: "family", name: "Family Room", dims: "20x13.5", x: 0, y: 30.5, w: 20, d: 13.5, click: true, img: null },
+      { id: "family", name: "Family Room", dims: "20x13.5", x: 0, y: 30.5, w: 20, d: 13.5, click: true, images: ["family-room.png"] },
 
       // --- CENTER column ---
       // Foyer is drawn FIRST (the large space); powder + stairs sit on top of it.
@@ -122,6 +124,12 @@ function fitFont(name, w, d) {
   const byHeight = d * 0.42;
   const byWidth = (w * 1.7) / Math.max(name.length, 6);
   return Math.max(0.85, Math.min(1.6, byHeight, byWidth));
+}
+
+// A room is clickable if it has any images, or is explicitly flagged click:true
+// (for rooms we want clickable before their images exist - shows a placeholder).
+function isClickable(room) {
+  return !!room.click || getImages(room).length > 0;
 }
 
 // Step (tread) hatch lines across a region.
@@ -225,11 +233,11 @@ function renderPlan(floor) {
 
     const rect = el("rect", {
       x: room.x, y: room.y, width: room.w, height: room.d,
-      rx: 0.4, class: "svg-room kind-" + kind + (room.click ? " clickable" : ""),
+      rx: 0.4, class: "svg-room kind-" + kind + (isClickable(room) ? " clickable" : ""),
     }, g);
     rect.dataset.id = room.id;
 
-    if (room.click) {
+    if (isClickable(room)) {
       rect.addEventListener("click", () => openRoom(room.id));
       rect.addEventListener("mouseenter", () => highlightRoom(room.id, true));
       rect.addEventListener("mouseleave", () => highlightRoom(room.id, false));
@@ -277,7 +285,7 @@ function renderRoomList(floor) {
   orientationEl.innerHTML = floor.note || "";
 
   floor.rooms
-    .filter((r) => r.click && r.name)
+    .filter((r) => isClickable(r) && r.name)
     .forEach((room) => {
       const imgs = getImages(room);
       const li = document.createElement("li");
