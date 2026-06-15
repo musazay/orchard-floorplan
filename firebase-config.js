@@ -9,10 +9,10 @@
 // Until the apiKey below is replaced with your real one, the app automatically falls
 // back to on-device notes (localStorage) so it still works locally.
 window.FIREBASE_CONFIG = {
-  apiKey: "REPLACE_ME",
-  authDomain: "REPLACE_ME.firebaseapp.com",
-  projectId: "REPLACE_ME",
-  storageBucket: "REPLACE_ME.appspot.com",
-  messagingSenderId: "REPLACE_ME",
-  appId: "REPLACE_ME",
+  apiKey: "AIzaSyAqWl7uOwy_Y7rrudAGt5U2du2fK84i0yc",
+  authDomain: "house-demo-75690.firebaseapp.com",
+  projectId: "house-demo-75690",
+  storageBucket: "house-demo-75690.firebasestorage.app",
+  messagingSenderId: "929567419620",
+  appId: "1:929567419620:web:2d8db180c0cb77f5d3d0f1"
 };
