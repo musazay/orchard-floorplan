@@ -74,11 +74,11 @@ const FLOORS = {
       // the laundry; the second straight stair is in it, left of the flex room.
       { id: "stairs2", name: "", x: 40, y: 0, w: 4, d: 12, click: false, img: null, kind: "stairs", arrowUp: true, arrowNearBottom: true },
       { id: "hall2", name: "", x: 40, y: 12, w: 4, d: 24, click: false, img: null, kind: "context" },
-      { id: "flex", name: "Flex Room", dims: "20x12", x: 44, y: 0, w: 16, d: 12, click: true, img: null },
+      { id: "flex", name: "Flex Room", dims: "20x12", x: 44, y: 0, w: 16, d: 12, images: ["flex-room.png"] },
       // hallway pocket between flex + bedroom; closet shrinks to make room for it
       { id: "hall3", name: "", x: 44, y: 12, w: 6, d: 4, click: false, img: null, kind: "context" },
       { id: "closet", name: "Closet", x: 50, y: 12, w: 10, d: 4, click: false, img: null, kind: "context" },
-      { id: "bedroom", name: "Bedroom", dims: "16x10", x: 44, y: 16, w: 16, d: 10, click: true, img: null },
+      { id: "bedroom", name: "Bedroom", dims: "16x10", x: 44, y: 16, w: 16, d: 10, images: ["bedroom.png"] },
       { id: "bath", name: "Full Bath", dims: "10x10", x: 44, y: 26, w: 10, d: 10, click: false, img: null, kind: "context" },
       { id: "mech", name: "Mech.", dims: "6x10", x: 54, y: 26, w: 6, d: 10, click: false, img: null, kind: "context", desc: "Mechanical room." },
       { id: "laundry", name: "Laundry / Utility", dims: "20x8.5", x: 40, y: 36, w: 20, d: 8, click: true, images: ["laundry-utility-mud.png", "laundry-hallway.png"], kind: "context", desc: "Garage door to house is here." },
