@@ -20,6 +20,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: var(--ink);
   background: var(--bg);
+  overflow-x: hidden;
 }
 
 /* Top bar */
@@ -35,6 +36,7 @@ body {
 }
 .title h1 { margin: 0; font-size: 1.35rem; letter-spacing: 0.5px; }
 .subtitle { margin: 2px 0 0; color: var(--muted); font-size: 0.85rem; }
+.hint-mobile { display: none; }
 
 .floor-toggle { display: flex; gap: 8px; }
 .floor-toggle button {
@@ -70,7 +72,7 @@ body {
   display: flex;
   justify-content: center;
 }
-.plan-wrap svg { width: 100%; height: auto; max-height: 78vh; }
+.plan-wrap svg { width: 100%; height: auto; max-width: 100%; max-height: 78vh; }
 
 .plan-pending {
   padding: 60px 20px;
@@ -134,6 +136,7 @@ body {
 .svg-room.kind-ghost { fill: var(--ghost); stroke-dasharray: 1.2 1; }
 .svg-room.kind-stairs { fill: #e4ddcc; }
 .svg-room.clickable:hover, .svg-room.clickable.hot { fill: var(--room-hover); }
+.svg-room.clickable:active { fill: var(--room-active); }
 .svg-label { fill: var(--ink); font-size: 1.5px; text-anchor: middle; pointer-events: none; }
 .svg-label .dim { fill: var(--muted); }
 .svg-label.context { fill: var(--muted); }
@@ -338,7 +341,16 @@ body {
 .modal-close:hover { background: rgba(0,0,0,0.7); }
 
 @media (max-width: 820px) {
-  .layout { flex-direction: column; }
+  /* mobile hint wording */
+  .hint-desktop { display: none; }
+  .hint-mobile { display: inline; }
+  /* lead with a big, prominent plan; supporting cards sit below it */
+  .layout { flex-direction: column; align-items: stretch; padding: 12px; gap: 12px; }
+  .topbar { padding: 12px 14px; }
+  .title h1 { font-size: 1.15rem; }
+  .plan-pane { order: -1; }
+  .plan-wrap { padding: 10px; }
+  .plan-wrap svg { max-height: none; } /* width governs on mobile; avoids height-driven overflow */
   .sidebar { flex-basis: auto; width: 100%; flex-direction: row; flex-wrap: wrap; }
   .sidebar .card { flex: 1 1 220px; }
   .modal-main { flex-direction: column; }
@@ -349,4 +361,10 @@ body {
   }
   .notes-list { max-height: 180px; }
   .notes-input textarea { min-height: 60px; }
+}
+
+@media (max-width: 560px) {
+  /* phones: stack the supporting cards full width so nothing is clipped */
+  .sidebar { flex-direction: column; }
+  .sidebar .card { flex: 1 1 auto; }
 }
