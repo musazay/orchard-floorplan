@@ -51,6 +51,13 @@ const FLOORS = {
       { x1: 45, y1: 12, x2: 48, y2: 12 },
       { x1: 45, y1: 16, x2: 48, y2: 16 },
     ],
+    // entryways: open passages between rooms (the wall is erased here)
+    entryways: [
+      { x1: 40, y1: 38.5, x2: 40, y2: 41.5 },  // foyer <-> laundry
+      { x1: 28.5, y1: 24, x2: 31.5, y2: 24 },  // foyer <-> great room
+      { x1: 20, y1: 36, x2: 20, y2: 39 },      // foyer <-> family room
+      { x1: 16, y1: 26, x2: 16, y2: 29 },      // pantry <-> hallway
+    ],
     note:
       "<strong>Orientation matches your sketch.</strong> North points <strong>down</strong>: " +
       "the bottom (foyer) faces the road / front entry. Page-right = west " +
@@ -268,6 +275,11 @@ function renderPlan(floor) {
   // erase wall segments to reveal passages / doorways (painted in the hallway fill)
   (floor.openings || []).forEach((op) => {
     el("line", { x1: op.x1, y1: op.y1, x2: op.x2, y2: op.y2, class: "wall-opening" }, svg);
+  });
+
+  // entryways: plain openings - erase the wall so it reads as an open passage
+  (floor.entryways || []).forEach((e) => {
+    el("line", { x1: e.x1, y1: e.y1, x2: e.x2, y2: e.y2, class: "entry-erase" }, svg);
   });
 
   // front-entry marker at the foyer (bottom center = north/road)

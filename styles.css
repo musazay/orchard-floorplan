@@ -146,6 +146,7 @@ body {
 .stair-arrow-head { fill: var(--ink); }
 .entry-mark { stroke: var(--accent); stroke-width: 0.5; fill: none; }
 .wall-opening { stroke: var(--context); stroke-width: 0.55; }
+.entry-erase { stroke: var(--room); stroke-width: 0.6; }
 .dim-line { stroke: var(--muted); stroke-width: 0.18; }
 .dim-label { fill: var(--muted); font-size: 2px; text-anchor: middle; }
 
